@@ -6,6 +6,7 @@ namespaces:
   schema:
   - namespace: core
     neurodata_types:
-    - ElectricalSeries
+    - NWBDataInterface
+    - TimeSeries
   - source: ndx-spectrum.extensions.yaml
   version: 0.1.0

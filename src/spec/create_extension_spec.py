@@ -1,9 +1,5 @@
 
-from pynwb.spec import (
-    NWBNamespaceBuilder,
-    NWBGroupSpec,
-    NWBAttributeSpec,
-)
+from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec
 from export_spec import export_spec
 
 
@@ -14,25 +10,35 @@ def main():
                                      author='Ben Dichter',
                                      contact='ben.dichter@gmail.com')
 
-    # TODO: define the new data types
-    custom_electrical_series = NWBGroupSpec(
-        neurodata_type_def='TetrodeSeries',
-        neurodata_type_inc='ElectricalSeries',
-        doc='A custom ElectricalSeries for my lab',
-        attributes=[
-            NWBAttributeSpec(
-                name='trode_id',
-                doc='the tetrode id',
-                dtype='int'
-            )
-        ],
-    )
+    Spectrum = NWBGroupSpec(
+        neurodata_type_def='Spectrum',
+        neurodata_type_inc='NWBDataInterface',
+        doc='type for storing power or phase of spectrum')
 
-    # TODO: add the new data types to this list
-    new_data_types = [custom_electrical_series]
+    for data_name in ('power', 'phase'):
+        Spectrum.add_dataset(
+            name=data_name,
+            doc='spectrum values',
+            dims=(('frequency',), ('frequency', 'channel')),
+            shape=((None,), (None, None)),
+            dtype='float',
+            quantity='?')
 
-    # TODO: include the types that are used and their namespaces (where to find them)
-    ns_builder.include_type('ElectricalSeries', namespace='core')
+    Spectrum.add_dataset(name='frequencies',
+                         doc='frequencies of spectrum',
+                         dims=('frequency',),
+                         shape=(None,),
+                         dtype='float')
+
+    Spectrum.add_link(target_type='TimeSeries',
+                      doc='timeseries that this spectrum describes',
+                      quantity='?',
+                      name='source_timeseries')
+
+    new_data_types = [Spectrum]
+
+    ns_builder.include_type('NWBDataInterface', namespace='core')
+    ns_builder.include_type('TimeSeries', namespace='core')
 
     export_spec(ns_builder, new_data_types)
 
