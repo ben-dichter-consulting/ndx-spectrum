@@ -11,15 +11,14 @@ def show_spectrum(spectrum):
     fig, axs = plt.subplots(naxes, 1, sharex=True)
 
     caxes = 0
+    ax = axs[caxes]
     if 'power' in spectrum:
-        ax = axs[caxes]
         ax.semilogy(spectrum.frequencies, spectrum.power)
         ax.set_ylabel('Power')
 
         caxes += 1
 
     if 'phase' in spectrum:
-        ax = axs[caxes]
         ax.plot(spectrum.frequencies, spectrum.phase)
         ax.set_ylabel('phase')
 
