@@ -14,7 +14,8 @@ setup_args = {
     'url': '',
     'license': '',
     'install_requires': [
-        'pynwb'
+        'pynwb',
+        'matplotlib'
     ],
     'packages': find_packages('src/pynwb'),
     'package_dir': {'': 'src/pynwb'},
