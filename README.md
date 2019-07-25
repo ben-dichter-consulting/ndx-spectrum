@@ -6,7 +6,7 @@
     
 ### Python Installation
 ```bash
-pip install git+https://github.com/bendichter/ndx-spectrum.git
+pip install ndx-spectrum
 ```
 
 ### Python Usage
