@@ -1,5 +1,7 @@
 # ndx-spectrum Extension for NWB:N
 
+[![PyPI version](https://badge.fury.io/py/ndx-spectrum.svg)](https://badge.fury.io/py/ndx-spectrum)
+
 [Python Installation](#python-installation)
 
 [Python Usage](#python-usage)
