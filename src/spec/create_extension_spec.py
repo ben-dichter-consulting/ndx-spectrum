@@ -35,10 +35,11 @@ def main():
                       quantity='?',
                       name='source_timeseries')
 
-    Spectrum.add_dataset(name='electrodes',
-                         doc='the electrodes that this series was generated from',
-                         neurodata_type_inc='DynamicTableRegion',
-                         quantity='?')
+    Spectrum.add_link(name='electrodes',
+                      doc='the electrodes that this series was generated from',
+                      neurodata_type_inc='DynamicTableRegion',
+                      quantity='?',
+                      required=False)
 
     new_data_types = [Spectrum]
 
