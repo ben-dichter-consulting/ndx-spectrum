@@ -8,5 +8,6 @@ namespaces:
     neurodata_types:
     - NWBDataInterface
     - TimeSeries
+    - DynamicTableRegion
   - source: ndx-spectrum.extensions.yaml
-  version: 0.1.0
+  version: 0.2.2
