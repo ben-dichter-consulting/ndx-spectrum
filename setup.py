@@ -7,7 +7,7 @@ from shutil import copy2
 
 setup_args = {
     'name': 'ndx-spectrum',
-    'version': '0.2.1',
+    'version': '0.2.2',
     'description': 'data type for holding power or phase spectra for a signal',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',

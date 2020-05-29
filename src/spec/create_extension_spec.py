@@ -1,14 +1,17 @@
-
-from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec
-from export_spec import export_spec
+from pynwb.spec import NWBNamespaceBuilder, NWBGroupSpec, export_spec
+import os
 
 
 def main():
     ns_builder = NWBNamespaceBuilder(doc='data type for holding power or phase spectra for a signal',
                                      name='ndx-spectrum',
-                                     version='0.1.0',
+                                     version='0.2.2',
                                      author='Ben Dichter',
                                      contact='ben.dichter@gmail.com')
+
+    ns_builder.include_type('NWBDataInterface', namespace='core')
+    ns_builder.include_type('TimeSeries', namespace='core')
+    ns_builder.include_type('DynamicTableRegion', namespace='core')
 
     Spectrum = NWBGroupSpec(
         neurodata_type_def='Spectrum',
@@ -42,10 +45,9 @@ def main():
 
     new_data_types = [Spectrum]
 
-    ns_builder.include_type('NWBDataInterface', namespace='core')
-    ns_builder.include_type('TimeSeries', namespace='core')
-
-    export_spec(ns_builder, new_data_types)
+    # export the spec to yaml files in the spec folder
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
+    export_spec(ns_builder, new_data_types, output_dir)
 
 
 if __name__ == "__main__":
