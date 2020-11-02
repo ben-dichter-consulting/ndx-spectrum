@@ -3,6 +3,7 @@ from collections.abc import Iterable
 from h5py import Dataset
 import numpy as np
 
+
 def show_spectrum(spectrum):
     naxes = 0
     if 'power' in spectrum.fields:
