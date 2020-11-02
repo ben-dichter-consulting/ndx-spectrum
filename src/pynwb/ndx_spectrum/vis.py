@@ -3,13 +3,6 @@ from collections.abc import Iterable
 from h5py import Dataset
 
 
-def _data_to_array(data):
-    if isinstance(data, Dataset):
-        return data[()]
-    else:
-        return data
-
-
 def show_spectrum(spectrum):
     naxes = 0
     if 'power' in spectrum.fields:
@@ -24,13 +17,13 @@ def show_spectrum(spectrum):
         ax = [axs]
     for ax_ in ax:
         if 'power' in spectrum.fields:
-            ax_.semilogy(_data_to_array(spectrum.frequencies), _data_to_array(spectrum.power))
+            ax_.semilogy(np.asarray(spectrum.frequencies), np.asarray(spectrum.power))
             ax_.set_ylabel('Power')
 
             caxes += 1
 
         if 'phase' in spectrum.fields:
-            ax_.plot(_data_to_array(spectrum.frequencies), _data_to_array(spectrum.phase))
+            ax_.plot(np.asarray(spectrum.frequencies), np.asarray(spectrum.phase))
             ax_.set_ylabel('phase')
 
         ax_.set_xlabel('frequency')
